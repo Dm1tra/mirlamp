@@ -1,0 +1,54 @@
+#spree-header.hidden-xs
+  %header#header{"data-hook" => ""}
+    .container
+      .row
+        %figure#logo.col-sm-1{"data-hook" => ""}
+          = link_to image_tag('logo1.png'), spree.root_path
+          / = logo
+        %nav.navbar.col-sm-3
+          %ul.nav.navbar-nav
+            %li
+              = link_to spree.root_path do
+                = t('header.slogan')
+        %nav#top-nav-bar.navbar.col-sm-6.col-sm-offset-2
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a.phone{href: "tel:+375293674737"}
+                %i.glyphicon.glyphicon-earphone
+                +375 (29) 367-47-37
+            %li
+              = link_to spree.blogs_path do
+                %i.glyphicon.glyphicon-tasks
+                = t('blogs.index.link')
+            %li#link-to-cart{"data-hook" => ""}
+              %noscript
+                = link_to Spree.t(:cart), '/cart'
+              \&nbsp;
+              :javascript
+
+  #category_header
+    .container
+      .row
+        = render partial: 'spree/shared/nav_bar'
+.navbar.navbar-fixed-top.navbar-inverse.visible-xs{role: "banner"}
+  .container
+    .navbar-header
+      %a.navbar-toggle.pull-left{"data-target" => ".side-collapse", "data-target-2" => ".side-collapse-container", "data-toggle" => "collapse-side", type: "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to t('header.site_title'), root_path, class: 'navbar-brand'
+    .navbar-inverse.side-collapse.in
+      %nav.navbar-collapse{role: "navigation"}
+        %ul.nav.navbar-nav
+          - Spree::Taxonomy.includes(root: :children).each do |taxonomy|
+            %li
+              = link_to Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name), seo_url(taxonomy.root)
+          %li
+            %a.phone{href: "tel:+375293674737"}
+              %i.glyphicon.glyphicon-earphone
+              +375 (29) 367-47-37
+          %li
+            = link_to spree.blogs_path do
+              %i.glyphicon.glyphicon-tasks
+              = t('blogs.index.link')

@@ -1,0 +1,23 @@
+- content_for :page_title do
+  Блог
+- content_for :page_actions do
+  = button_link_to 'Добавить запись', new_admin_blog_url, class: "btn-success", icon: 'add', id: 'admin_new_blog_link'
+- content_for :table_filter_title do
+  = Spree.t(:search)
+
+%table#listing_blogs.table{"data-hook" => ""}
+  %thead
+    %tr{"data-hook" => "admin_blogs_index_headers"}
+      %th
+        Название
+      %th
+        Alias
+      %th.actions{"data-hook" => "admin_blogs_index_header_actions"}
+  %tbody
+    - @blogs.each do |blog|
+      %tr{id: spree_dom_id(blog), "data-hook" => "admin_blogs_index_rows"}
+        %td.blog_title= link_to blog.title, admin_blog_url(blog)
+        %td.blog_alis= blog.slug
+        %td.actions.actions-2.text-right{"data-hook" => "admin_blogs_index_row_actions"}
+          = link_to_edit blog, no_text: true
+          = link_to_delete blog, no_text: true

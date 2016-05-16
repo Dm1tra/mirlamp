@@ -1,0 +1,26 @@
+.row
+  .col-sm-6.col-sm-offset-6{"data-hook" => "billing_fieldset_wrapper"}
+    #billing.panel.panel-default{"data-hook" => ""}
+      = form.fields_for :bill_address do |bill_form|
+        .panel-heading
+          %h3.panel-title Доставка
+        .panel-body
+          = render :partial => 'spree/address/form', :locals => { :form => bill_form, :address_type => 'billing', :address => @order.bill_address }
+  .col-sm-6.hide{"data-hook" => "shipping_fieldset_wrapper"}
+    #shipping.panel.panel-default{"data-hook" => ""}
+      = form.fields_for :ship_address do |ship_form|
+        .panel-heading
+          %h3.panel-title= Spree.t(:shipping_address)
+        .panel-body
+          %p.field.checkbox{"data-hook" => "use_billing"}
+            = label_tag :order_use_billing, :id => 'use_billing' do
+              = check_box_tag 'order[use_billing]', '1', @order.shipping_eq_billing_address?
+              = Spree.t(:use_billing_address)
+          = render :partial => 'spree/address/form', :locals => { :form => ship_form, :address_type => 'shipping', :address => @order.ship_address }
+.well.text-right.form-buttons{"data-hook" => "buttons"}
+  = submit_tag Spree.t(:save_and_continue), :class => 'btn btn-lg btn-success'
+  - if try_spree_current_user
+    %span{"data-hook" => "save_user_address"}
+      \&nbsp; &nbsp;
+      \#{check_box_tag 'save_user_address', '1', try_spree_current_user.respond_to?(:persist_order_address)}
+      \#{label_tag :save_user_address, Spree.t(:save_my_address)}

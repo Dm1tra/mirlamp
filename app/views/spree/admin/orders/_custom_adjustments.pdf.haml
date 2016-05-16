@@ -1,0 +1,7 @@
+- if adjustments.eligible.exists?
+  - adjustments.eligible.group_by(&:label).each do |label, adjustments|
+    %tr
+      %td{style: 'text-align: right', colspan: "3"}
+        = label
+      %td.line-item-total.text-center
+        = Spree::Money.new(adjustments.sum(&:amount), currency: adjustments.first.order.try(:currency))

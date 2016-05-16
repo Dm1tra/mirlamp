@@ -1,0 +1,53 @@
+- cache "footer" do
+  %footer
+    .container
+      .row
+
+        .col-sm-3
+          #organization{itemscope: "", itemtype: "http://schema.org/Organization"}
+            %h4= t('footer.info')
+            %p
+              %i.glyphicon.glyphicon-earphone
+              = t('footer.phone')
+              %a{href: "tel:+375293674737", itemprop: "telephone"}
+                +375 (29) 367-47-37
+            %p
+              %i.glyphicon.glyphicon-envelope
+              Email:
+              %a{href: "mailto:info@mirlamp.by", itemprop: "email"}
+                info@mirlamp.by
+            /%p{itemprop: "address", itemscope: "", itemtype: "http://schema.org/PostalAddress"}
+            /  %i.glyphicon.glyphicon-map-marker
+            /  = t('footer.address')
+            /  %span{itemprop: "postalCode"} 125438
+            /  ,
+            /  %span{itemprop: "addressLocality"}= t('footer.city')
+            /  ,
+            /  %span{itemprop: "streetAddress"}
+            /    = t('footer.street')
+            %p
+              %i.glyphicon.glyphicon-barcode
+              = t('footer.company_name')
+            %p
+              %i.glyphicon.glyphicon-calendar
+              = t('footer.orgn')
+            %p
+              %i.glyphicon.glyphicon-home
+              = t('footer.home')
+            #socical
+              =link_to (image_tag 'instagram.png', size: '30x30'), 'https://www.instagram.com/mirlamp/', target: '_blank'
+              =link_to (image_tag 'facebook-icon.png', size: '30x30'), 'https://www.facebook.com/mirlamp/', target: '_blank'
+              =link_to (image_tag 'vkontakte.png', size: '30x30'), '', target: '_blank'
+        .col-sm-2.col-sm-offset-2
+        .col-sm-2.col-sm-offset-1
+          %h4= t('footer.dom_v_dome')
+          = render partial: 'spree/shared/footer_page', collection: Spree::Page.by_store(current_store).visible.footer_links, as: :page
+        .col-sm-2
+          %h4= t('footer.catalog')
+          - Spree::Taxonomy.includes(root: :children).each do |taxonomy|
+            %p
+              = link_to Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name), seo_url(taxonomy.root)
+      .row.copyright.text-center
+        .col-sm-8.col-sm-offset-2
+          %p= t('footer.copyright')
+= render 'spree/shared/metrika' if Rails.env.production?

@@ -1,0 +1,32 @@
+- content_for :head do
+  %meta{content: og_image, property: "og:image"}/
+
+- content_for :sidebar do
+  %div{"data-hook" => "homepage_sidebar_navigation"}
+    = render partial: 'spree/shared/taxonomies'
+%nav#breadcrumbs
+  %ol.breadcrumb{itemscope: "itemscope", itemtype: "https://schema.org/BreadcrumbList"}
+    %li{itemprop: "itemListElement", itemscope: "itemscope", itemtype: "https://schema.org/ListItem"}
+      %span{itemprop: "item"}
+        %a{href: "/", itemprop: "url"}>
+          %span{itemprop: "name"} Домой
+        \&nbsp;
+    %li{itemprop: "itemListElement", itemscope: "itemscope", itemtype: "https://schema.org/ListItem"}
+      %span{itemprop: "item"}
+        %a{href: "/blogs", itemprop: "url"}>
+          %span{itemprop: "name"} Блог
+        \&nbsp;
+    %li.active{itemprop: "itemListElement", itemscope: "itemscope", itemtype: "https://schema.org/ListItem"}
+      %span{itemprop: "item"}
+        = link_to spree.blog_path(@blog), itemprop: 'url' do
+          %span{itemprop: "name"}= @blog.title
+%article.panel.panel-default{itemscope: "", itemtype: "http://schema.org/Article"}
+  .panel-body
+    .row
+      .col-sm-4
+        = image_tag @blog.image.url(:large), class: "img-responsive img-thumbnail", alt: @blog.title, itemprop: "image"
+      .col-sm-8
+        %h1.text-center{itemprop: "name"}= @blog.title
+        %time{itemprop: "datePublished"}= @blog.created_at.strftime("%d.%m.%Y")
+        .description{:itemprop => "description"}
+          = raw @blog.body

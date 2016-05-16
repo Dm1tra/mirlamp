@@ -1,0 +1,36 @@
+.row{"data-hook" => "admin_blog_form_fields"}
+  .col-md-6
+    = f.field_container :title, class: ['form-group'] do
+      = f.label :title, 'Название'
+      = f.text_field :title, class: 'form-control'
+      = error_message_on :blog, :title
+  .col-md-6
+    = f.field_container :slug, class: ['form-group'] do
+      = f.label :slug, 'Alias'
+      = f.text_field :slug, class: 'form-control'
+      = error_message_on :blog, :slug
+  .col-md-6
+    = f.field_container :seo_title, class: ['form-group'] do
+      = f.label :seo_title, 'Seo title'
+      = f.text_field :seo_title, class: 'form-control'
+      = error_message_on :blog, :seo_title
+  .col-md-6
+    = f.field_container :meta_keywords, class: ['form-group'] do
+      = f.label :meta_keywords, 'Seo keywords'
+      = f.text_field :meta_keywords, class: 'form-control'
+      = error_message_on :blog, :meta_keywords
+  .col-md-12
+    = f.field_container :meta_description, class: ['form-group'] do
+      = f.label :meta_description, 'Seo description'
+      = f.text_area :meta_description, class: 'form-control'
+      = error_message_on :meta_description, :body
+  .col-md-12
+    = f.field_container :image, class: ['form-group'] do
+      = f.label :image, 'Изображение'
+      = f.file_field :image, class: 'form-control'
+      = error_message_on :blog, :image
+  .col-md-12
+    = f.field_container :body, class: ['form-group'] do
+      = f.label :body, 'Статья'
+      = f.text_area :body, class: 'form-control'
+      = error_message_on :blog, :body

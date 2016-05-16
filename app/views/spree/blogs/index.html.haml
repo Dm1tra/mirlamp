@@ -1,0 +1,30 @@
+- content_for :sidebar do
+  %div{"data-hook" => "homepage_sidebar_navigation"}
+    = render partial: 'spree/shared/taxonomies'
+- cache collection_cache_key_for(:blog) do
+  %nav#breadcrumbs
+    %ol.breadcrumb{itemscope: "itemscope", itemtype: "https://schema.org/BreadcrumbList"}
+      %li{itemprop: "itemListElement", itemscope: "itemscope", itemtype: "https://schema.org/ListItem"}
+        %span{itemprop: "item"}
+          %a{href: "/", itemprop: "url"}>
+            %span{itemprop: "name"} Домой
+          \&nbsp;
+      %li.active{itemprop: "itemListElement", itemscope: "itemscope", itemtype: "https://schema.org/ListItem"}
+        %span{itemprop: "item"}
+          %a{href: "/blogs", itemprop: "url"}
+            %span{itemprop: "name"} Блог
+  %h1 Блог
+  .blogs
+    - Spree::Blog.all.each do |blog|
+      .row.thumbnail
+        %article{itemscope: "", itemtype: "http://schema.org/Article"}
+          .col-md-4
+            = link_to spree.blog_path(blog) do
+              = image_tag blog.image.url(:large), class: "img-responsive img-thumbnail", alt: blog.title, itemprop: "image"
+          .col-md-8
+            %h3.text-center{itemprop: "name"}
+              = link_to blog.title, spree.blog_path(blog), rel: "bookmark"
+            .description{:itemprop => "description"}
+              = simple_format blog.body.truncate(300)
+            %time{itemprop: "datePublished"}= blog.created_at.strftime("%d.%m.%Y")
+            %p.read-more= link_to 'Читать дальше', spree.blog_path(blog), class: "more", itemprop: "url"

@@ -1,0 +1,29 @@
+- content_for :page_title do
+  = Spree.t(:taxons)
+.taxon-products-view
+  .form-group
+    = text_field_tag :taxon_id
+  %ul#taxon_products.taxon
+  = render partial: "spree/admin/products/autocomplete", formats: :js
+%script{src: "//cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.2/jquery.fileupload.min.js"}
+.row
+  .col-sm-12
+    %table.table-striped.table
+      %thead
+        %tr
+          %td Название
+          %td Изображение
+      %tbody
+        - Spree::Taxon.find_each do |taxon|
+          %tr
+            %td= taxon.name
+            %td
+              %p{id: "taxon_#{taxon.id}"}= image_tag taxon.icon.url(:large), size: '80x80', class: 'img-thumnail img-responsive'
+            %td
+              = file_field_tag :upload_image, class: 'file-upload', data: { url: "/admins/taxons/#{taxon.id}/upload_image.js" }
+:javascript
+  $(document).on('ready page:load', function() {
+    $('.file-upload').fileupload({
+      autoUpload: true
+    });
+  });

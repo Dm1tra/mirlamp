@@ -1,0 +1,60 @@
+%h3 Заказ № #{@order.number}
+- if @order.line_items.exists?
+  %table.table-bordered.table
+    %thead
+      %tr
+        %td Название
+        %td Стоимость
+        %td Количество
+        %td Итого
+    %tbody
+      - @order.line_items.each do |item|
+        %tr
+          %td.line-item-name.text-center
+            = item.variant.product.name
+            %br
+              = "(" + variant_options(item.variant) + ")" unless item.variant.option_values.empty?
+          %td.line-item-price.text-center= item.single_money.to_html
+          %td.line-item-qty-show.text-center
+            = item.quantity
+          %td.line-item-total.text-center= line_item_shipment_price(item, item.quantity)
+      %tr
+        - shipment = @order.shipments.first
+        - if rate = shipment.selected_shipping_rate
+          %td{style: 'text-align: right', colspan: "3"}
+            = rate.name
+          %td.line-item-total.text-center
+            = shipment.display_cost
+        - else
+          %td{colspan: "4"}= Spree.t(:no_shipping_method_selected)
+      = render 'spree/admin/orders/custom_adjustments', adjustments: @order.line_item_adjustments, order: @order
+      = render 'spree/admin/orders/custom_adjustments', adjustments: @order.shipment_adjustments, order: @order
+      = render 'spree/admin/orders/custom_adjustments', adjustments: @order.adjustments, order: @order
+      %tr
+        %td{style: 'text-align: right', colspan: 4}
+          Итого:
+          = @order.display_total.to_html
+
+%p
+  Дата заказа:
+  - if @order.completed?
+    = pretty_time(@order.completed_at)
+  - if @order.approved?
+    = pretty_time(@order.approved_at)
+  - if @order.canceled? && @order.canceler && @order.canceled_at
+    = pretty_time(@order.canceled_at)
+%p
+  Адрес:
+  - if @order.bill_address
+    = @order.bill_address.address1
+%p
+  Имя:
+  - if @order.bill_address
+    = @order.bill_address.firstname
+%p
+  Телефон:
+  - if @order.bill_address
+    = @order.bill_address.phone
+%hr/
+= link_to 'Domvdome.ru', root_url
+Насущный интернет-магазин.

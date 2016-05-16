@@ -1,0 +1,11 @@
+<% if @product.taxons.present? %>
+  <h3 class="product-section-title"><%= Spree.t(:look_for_similar_items) %></h3>
+  <div class="list-group" id="similar_items_by_taxon" data-hook>
+    <% @product.taxons.each do |taxon| %>
+      <%= link_to seo_url(taxon), class: "list-group-item" do %>
+        <%= taxon.name %>
+        <span class='glyphicon glyphicon-chevron-right pull-right'></span>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

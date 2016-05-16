@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title #{@order.number}
+    %meta{charset: "utf-8"}
+    = wicked_pdf_stylesheet_link_tag  'spree/backend/all', media: "all"
+    = wicked_pdf_javascript_include_tag 'spree/backend/all'
+    = csrf_meta_tags
+  %body{style: 'background-color: #FFFFFF;padding-top: 0px;'}
+    = yield

@@ -1,0 +1,22 @@
+%h1.taxon-title= @taxon.name
+- content_for :sidebar do
+  %div{"data-hook" => "taxon_sidebar_navigation"}
+    = render partial: 'spree/shared/taxonomies'
+    // = render partial: 'spree/shared/filters' if @taxon.leaf?
+- if @taxon.name == t('taxons.category_taxons')
+  #products.row
+    - @taxon.children.each do |taxon|
+      .col-md-3.col-sm-6.col-xs-6.product-list-item
+        .panel.panel-default
+          = link_to seo_url(taxon) do
+            .panel-body.text-center.category-body
+              = image_tag taxon.icon.url(:large), class: 'img-responsive center-block'
+            .panel-footer.text-center
+              %h4= taxon.name
+- else
+  %div{"data-hook" => "taxon_products"}
+    = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
+- unless params[:keywords].present? || @taxon.name == t('taxons.category_taxons')
+  %div{"data-hook" => "taxon_children"}
+    - cache [I18n.locale, @taxon] do
+      = render partial: 'taxon', collection: @taxon.children

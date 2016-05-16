@@ -1,0 +1,43 @@
+<% if slider.size > 0 %>
+
+  <%# generate a random number for the carousel id - in case you want multiple per page %>
+  <% cid ||= Random.rand(1000) %>
+
+  <div id="carousel-slider-<%= cid %>" class="carousel slide" data-ride="carousel" data-interval="9000">
+    <%# Wrapper for slider %>
+    <div class="carousel-inner">
+      <% slider.each_with_index do |slide, index| %>
+        <div class="item <%= index == 0 ? 'active' : '' %>">
+          <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name, class: 'img-thumbnail'), url_for(slide.slide_link) %>
+          <%= link_to url_for(slide.slide_link) do%>
+            <div class="carousel-caption">
+              <h3><%= slide.slide_name %></h3>
+              <% unless slide.body.blank? %>
+                <p class='lead'><%= slide.body %><p>
+              <% end %>
+              <div class="hidden-xs">
+                <%= link_to 'Купить', url_for(slide.slide_link), class: 'btn btn-success btn-lg'%>
+              </div>
+
+              <div class="visible-xs">
+                <%= link_to 'Купить', url_for(slide.slide_link), class: 'btn btn-success btn-xs'%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <%# Controls %>
+    <a class="left carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only"><%= t(:previous) %></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only"><%= t(:next) %></span>
+    </a>
+
+  </div>
+
+<% end %>

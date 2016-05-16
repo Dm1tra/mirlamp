@@ -1,0 +1,17 @@
+- content_for :page_title do
+  Редактирование
+  = @blog.title
+
+.panel.panel-default{"data-hook" => "admin_blog_edit_general_settings"}
+  .panel-heading
+    %h1.panel-title
+      Редактирование
+      = @blog.title
+  .panel-body
+    %div{"data-hook" => "admin_user_edit_form_header"}
+      = render partial: 'spree/admin/shared/error_messages', locals: { target: @blog }
+    %div{"data-hook" => "admin_user_edit_form"}
+      = form_for [:admin, @blog], as: :blog, url: spree.admin_blog_url(@blog), method: :put do |f|
+        = render partial: 'form', locals: { f: f }
+        %div{"data-hook" => "admin_blog_edit_form_button"}
+          = render partial: 'spree/admin/shared/edit_resource_links', locals: { collection_url: spree.admin_blogs_url }

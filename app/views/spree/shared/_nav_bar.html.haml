@@ -1,0 +1,10 @@
+%nav#top-nav-bar.navbar.col-md-8
+  %ul#nav-bar.nav.navbar-nav{"data-hook" => ""}
+    - Spree::Taxonomy.includes(root: :children).each do |taxonomy|
+      %li
+        = link_to Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name), seo_url(taxonomy.root)
+%nav.navbar.col-md-4.hidden-xs.hidden-sm
+  %ul.nav.navbar-nav.navbar-right{"data-hook" => ""}
+    /%li#search-bar{"data-hook" => ""}
+    %li
+      = render :partial => 'spree/shared/search'

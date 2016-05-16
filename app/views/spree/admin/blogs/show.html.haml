@@ -1,0 +1,7 @@
+.row
+  .col-md-12
+    %h1= @blog.title
+  .col-md-12
+    = image_tag @blog.image.url(:large), class: 'img-thumnail img-responsive'
+  .col-md-12
+    = simple_format @blog.body

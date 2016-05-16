@@ -1,0 +1,2 @@
+- page_uri = Rails.application.routes.named_routes[:spree].path.spec.to_s == '/' ? page.slug : Rails.application.routes.named_routes[:spree].path.spec.to_s + page.slug
+%p= link_to page.title, page_uri

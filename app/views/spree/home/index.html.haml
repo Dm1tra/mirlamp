@@ -1,0 +1,37 @@
+/- content_for :sidebar do
+/  %div{"data-hook" => "homepage_sidebar_navigation"}
+/    = render partial: 'spree/shared/taxonomies'
+/%div{"data-hook" => "homepage_products"}
+/  - cache(cache_key_for_products) do
+/    = render partial: 'spree/shared/products', locals: { products: @products }
+- slides = Spree::Slide.published
+= render partial: 'spree/shared/slider', locals: { slider: slides }
+.row#banners
+  - Spree::Slide.banners.each do |banner|
+    - if banner.col_klass.include?('12')
+      %div{class: banner.col_klass}
+        .thumbnail
+          = link_to image_tag(banner.slide_image.url, class: 'img-responsive center-block'), url_for(banner.link_url)
+    - else
+      %div{class: banner.col_klass}
+        .thumbnail
+          = link_to url_for(banner.link_url) do
+            .row
+              .col-sm-6
+                = image_tag(banner.slide_image.url, class: 'img-responsive center-block')
+              .col-sm-6
+                %h4.text-center= banner.name
+                = simple_format(banner.body)
+- content_for :instagram do
+  - cache "istagram" do
+    .row
+      .col-sm-12
+        %h2.text-center
+          Instagram
+          = link_to "#Domvdome.ru", "https://www.instagram.com/domvdome.ru/", target: "_blank"
+
+        .owl-carousel
+          - response = get_instagram_images
+          - if response
+            - response.each do |image|
+              = link_to  (image_tag image["images"]["standard_resolution"]["url"], class: "img-responsive img-thumbnail", alt: "Domvdome.ru instagram"), image["link"], target: "_blank"
