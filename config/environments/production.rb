@@ -47,19 +47,7 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
-  config.action_mailer.asset_host = 'http://domvdome.ru'
-  config.action_mailer.default_url_options = { host: 'domvdome.ru', from: '"Domvdome.ru" <info@domvdome.ru>' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.yandex.ru',
-    port: 465,
-    domain: 'domvdome.ru',
-    authentication: 'plain',
-    user_name: 'info@domvdome.ru',
-    password: 'domvdome13',
-    # enable_starttls_auto: true,
-    ssl: true
-  }
+  
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
