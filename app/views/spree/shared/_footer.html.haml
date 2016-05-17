@@ -3,7 +3,7 @@
     .container
       .row
 
-        .col-sm-3
+        .col-sm-6
           #organization{itemscope: "", itemtype: "http://schema.org/Organization"}
             %h4= t('footer.info')
             %p
@@ -40,7 +40,7 @@
               =link_to (image_tag 'vkontakte.png', size: '30x30'), '', target: '_blank'
         .col-sm-2.col-sm-offset-2
         .col-sm-2.col-sm-offset-1
-          %h4= t('footer.dom_v_dome')
+          %h4= t('footer.Mir_lamp')
           = render partial: 'spree/shared/footer_page', collection: Spree::Page.by_store(current_store).visible.footer_links, as: :page
         .col-sm-2
           %h4= t('footer.catalog')

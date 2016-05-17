@@ -10,18 +10,18 @@
         <div class="item <%= index == 0 ? 'active' : '' %>">
           <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name, class: 'img-thumbnail'), url_for(slide.slide_link) %>
           <%= link_to url_for(slide.slide_link) do%>
-            <div class="carousel-caption">
+        <!---   <div class="carousel-caption">
               <h3><%= slide.slide_name %></h3>
               <% unless slide.body.blank? %>
                 <p class='lead'><%= slide.body %><p>
-              <% end %>
-              <div class="hidden-xs">
-                <%= link_to 'Купить', url_for(slide.slide_link), class: 'btn btn-success btn-lg'%>
-              </div>
+              <% end %>-->
+              <!---<div class="hidden-xs">
+                <%= link_to 'Подробнее...', url_for(slide.slide_link), class: 'btn btn-success btn-lg'%>
+              </div>-->
 
-              <div class="visible-xs">
-                <%= link_to 'Купить', url_for(slide.slide_link), class: 'btn btn-success btn-xs'%>
-              </div>
+              <!---<div class="visible-xs">
+                <%= link_to 'Подробнее...', url_for(slide.slide_link), class: 'btn btn-success btn-xs'%>
+              </div>-->
             </div>
           <% end %>
         </div>

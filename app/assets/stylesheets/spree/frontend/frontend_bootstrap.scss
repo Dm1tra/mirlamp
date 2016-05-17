@@ -137,19 +137,19 @@ footer {
   background: #FFFFFF asset-url('footer.jpg') center center;
   background-size: cover;
   box-shadow: 0 -5px 5px -5px #333;
-  color: white;
+  color: black;
   .blackground{
     background: rgba($gray-darker, 0.5);
   }
 
   h4{
-    color: #e9eaed;
+    color: #000000;
   }
 
   a{
-    color: white;
+    color: black;
     &:hover{
-      color: white;
+      color: Black;
     }
   }
   ul{
@@ -168,7 +168,7 @@ footer {
     }
   }
   .copyright{
-    color: white;
+    color: black;
     p{
       margin-top: 10px;
     }
