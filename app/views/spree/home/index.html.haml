@@ -22,16 +22,4 @@
               .col-sm-6
                 %h4.text-center= banner.name
                 = simple_format(banner.body)
-- content_for :instagram do
-  - cache "istagram" do
-    .row
-      .col-sm-12
-        %h2.text-center
-          Instagram
-          = link_to "#Domvdome.ru", "https://www.instagram.com/domvdome.ru/", target: "_blank"
-
-        .owl-carousel
-          - response = get_instagram_images
-          - if response
-            - response.each do |image|
-              = link_to  (image_tag image["images"]["standard_resolution"]["url"], class: "img-responsive img-thumbnail", alt: "Domvdome.ru instagram"), image["link"], target: "_blank"
+                
