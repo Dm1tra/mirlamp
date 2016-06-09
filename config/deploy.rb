@@ -3,7 +3,7 @@ lock '3.4.0'
 
 # Change these
 
-set :repo_url,        'git@bitbucket.org:dmitriimiachin/caffeeshop.git'
+set :repo_url,        'git@github.com:Dm1tra/mirlamp.git'
 set :application,     'caffeshop'
 set :user,            'deployer'
 set :puma_threads,    [4, 16]

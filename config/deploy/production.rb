@@ -7,13 +7,13 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-role :app, %w(deployer@178.62.165.28)
-role :web, %w(deployer@178.62.165.28)
-role :db,  %w(deployer@178.62.165.28)
+role :app, %w(deployer@185.143.172.77)
+role :web, %w(deployer@185.143.172.77)
+role :db,  %w(deployer@185.143.172.77)
 
 set :rails_env, :production
 
-server '178.62.165.28', user: 'deployer', roles: %w(app db web), primary: true
+server '185.143.172.77', user: 'deployer', roles: %w(app db web), primary: true
 
 # role-based syntax
 # ==================
@@ -64,4 +64,4 @@ server '178.62.165.28', user: 'deployer', roles: %w(app db web), primary: true
 set :ssh_options,   keys: %w(/Users/artemadamcov/.ssh/id_rsa),
                     forward_agent: true,
                     auth_methods: %w(publickey password),
-                    port: 13_531
+                    port: 4404
