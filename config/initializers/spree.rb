@@ -23,3 +23,10 @@ Spree.config do |config|
 end
 Spree::Config[:always_put_site_name_in_title] = false
 Spree.user_class = 'Spree::User'
+
+SpreeEditor::Config.tap do |config|
+  config.ids = 'product_description page_body event_body'
+
+  # change the editor to CKEditor
+  config.current_editor = 'CKEditor'
+end
