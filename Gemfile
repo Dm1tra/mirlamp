@@ -75,6 +75,7 @@ gem 'daemons'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap', branch: '3-0-stable'
 gem 'spree_static_content', github: 'spree-contrib/spree_static_content', branch: '3-0-stable'
 gem 'spree_slider', github: 'spree-contrib/spree_slider', branch: '3-0-stable'
+gem 'spree_editor', github: 'spree-contrib/spree_editor', branch: '3-0-stable'
 gem 'whenever', require: false
 gem 'httparty'
 gem 'owlcarousel-rails'#, github: 'acrogenesis/owlcarousel-rails', branch: 'OwlCarousel2'

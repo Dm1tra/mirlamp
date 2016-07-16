@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: mirlamp
-  username: arthur
-  password: spirit135
+  database: mirlamp_development
+  username: artemadamcov
+  password: ''
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

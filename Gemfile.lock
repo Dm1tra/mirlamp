@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/spree-contrib/spree_editor.git
+  revision: 00c3db2d06f659e4bb7e600c62ef14e3c7158263
+  branch: 3-0-stable
+  specs:
+    spree_editor (3.0.5)
+      ckeditor (~> 4.1.2)
+      spree_backend (~> 3.0.0)
+      tinymce-rails (~> 4.1.10)
+
+GIT
   remote: git://github.com/spree-contrib/spree_i18n.git
   revision: 53853ad1f1f1c94ba90c6ec177568550354a65d4
   branch: 3-0-stable
@@ -224,6 +234,9 @@ GEM
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
+    ckeditor (4.1.6)
+      cocaine
+      orm_adapter (~> 0.5.0)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -655,6 +668,8 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.1)
     tins (1.6.0)
+    tinymce-rails (4.1.10)
+      railties (>= 3.1.1)
     truncate_html (0.9.2)
     twitter_cldr (3.2.1)
       camertron-eprun
@@ -741,6 +756,7 @@ DEPENDENCIES
   simple-spreadsheet
   spree!
   spree_auth_devise!
+  spree_editor!
   spree_gateway!
   spree_i18n!
   spree_sitemap!
