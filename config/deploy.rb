@@ -105,7 +105,6 @@ namespace :sitemap do
       within "#{current_path}" do
         with rails_env: "#{fetch(:stage)}" do
           execute :rake, '-s sitemap:refresh'
-          execute :rake, 'yandex_yml:generate'
         end
       end
     end
